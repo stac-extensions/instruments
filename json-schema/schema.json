@@ -91,12 +91,20 @@
         "type": "string"
       }
     },
+    "datatake_id": {
+      "title": "Datatake ID",
+      "type": "string",
+      "minLength": 1
+    },
     "fields": {
       "$comment": "Add your new fields here. Don't require them here as they would be required in all places where we reference the fields as possibly allowed.",
       "type": "object",
       "properties": {
         "instrument_modes": {
           "$ref": "#/definitions/instrument_modes"
+        },
+        "datatake_id": {
+          "$ref": "#/definitions/datatake_id"
         }
       }
     },
