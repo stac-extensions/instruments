@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `datatake_id` to identify the datatake (continuous acquisition) that the data comes from
+- `instrument_datatake_id` to identify the datatake (continuous acquisition) that the data comes from
 
 ### Changed
 

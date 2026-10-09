@@ -91,8 +91,8 @@
         "type": "string"
       }
     },
-    "datatake_id": {
-      "title": "Datatake ID",
+    "instrument_datatake_id": {
+      "title": "Instrument Datatake ID",
       "type": "string",
       "minLength": 1
     },
@@ -103,8 +103,8 @@
         "instrument_modes": {
           "$ref": "#/definitions/instrument_modes"
         },
-        "datatake_id": {
-          "$ref": "#/definitions/datatake_id"
+        "instrument_datatake_id": {
+          "$ref": "#/definitions/instrument_datatake_id"
         }
       }
     },

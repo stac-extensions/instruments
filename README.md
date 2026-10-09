@@ -34,10 +34,10 @@ The fields in the table below can be used in these parts of STAC documents:
 - [ ] Links (incl. Link Templates)
 - [ ] Bands
 
-| Field Name       | Type            | Description |
-| ---------------- | --------------- | ----------- |
-| instrument_modes | \[string\|null] | A list of instrument modes of each instrument listed in `instruments`. |
-| datatake_id      | string          | The identifier of the datatake (one continuous acquisition) that the data comes from. |
+| Field Name             | Type            | Description |
+| ---------------------- | --------------- | ----------- |
+| instrument_modes       | \[string\|null] | A list of instrument modes of each instrument listed in `instruments`. |
+| instrument_datatake_id | string          | The identifier of the datatake (one continuous acquisition) that the data comes from. |
 
 ### `instrument_modes`
 
@@ -48,7 +48,7 @@ Don't provide `instrument_modes` if all array elements are `null`.
 It is intended that other extensions such as SAR and Altimetry define the scope
 of this more clearly when the other extensions is provided in combination with this extemsion.
 
-### `datatake_id`
+### `instrument_datatake_id`
 
 A datatake is one continuous acquisition by an instrument in one mode,
 for example a strip of satellite imagery or the flight line of an aircraft.
@@ -62,7 +62,7 @@ Use the identifier as given by the provider and don't change its format.
 If the provider gives a number, provide it as a string in the notation of the provider's metadata.
 
 The value is often only unique for a specific platform, e.g. if each satellite has its own counter.
-Thus `platform` should be provided and clients should use `platform` and `datatake_id` together to identify a datatake.
+Thus `platform` should be provided and clients should use `platform` and `instrument_datatake_id` together to identify a datatake.
 
 Don't use this field for identifiers of parts of a datatake (e.g. scenes, tiles, slices or datastrips)
 or for the identifier of the product.
@@ -90,7 +90,7 @@ Providers use different terms for a datatake, for example:
 | AVIRIS-NG (airborne)    | Flight line         | `ang20200708t192518`                                 |
 
 Note that some providers (e.g. Airbus for Pléiades) use the term *data strip* for the whole acquisition.
-Such identifiers are datatake identifiers and should be provided in `datatake_id`.
+Such identifiers are datatake identifiers and should be provided in `instrument_datatake_id`.
 
 Extensions for specific missions may define the meaning and format of the value in more detail.
 

@@ -48,7 +48,7 @@
     "instrument_modes": [
       "INS-NOBS"
     ],
-    "datatake_id": "GS2A_20250626T101701_052286_N05.11"
+    "instrument_datatake_id": "GS2A_20250626T101701_052286_N05.11"
   },
   "links": [
     {
