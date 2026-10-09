@@ -9,9 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `instrument_datatake_id` to identify the datatake (continuous acquisition) that the data comes from
+- `instrument:datatake_id` to identify the datatake (continuous acquisition) that the data comes from
 
 ### Changed
+
+- Renamed `instrument_modes` to `instrument:modes`
 
 ### Deprecated
 

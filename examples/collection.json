@@ -39,7 +39,7 @@
       "olci",
       "slstr"
     ],
-    "instrument_modes": [
+    "instrument:modes": [
       "olci_mode_exmaple",
       "slstr_mode_example"
     ]
