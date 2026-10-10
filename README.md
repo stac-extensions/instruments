@@ -1,7 +1,7 @@
 # Instruments Extension Specification
 
 - **Title:** Instruments
-- **Identifier:** <https://stac-extensions.github.io/instruments/v0.1.0/schema.json>
+- **Identifier:** <https://stac-extensions.github.io/instruments/v0.2.0/schema.json>
 - **Field Name Prefix:** instrument
 - **Scope:** Catalog, Collection, Item
 - **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Proposal
