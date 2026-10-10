@@ -19,6 +19,7 @@ Thus it has no prefix to ensure backward compatibility once it's added to common
 - Examples:
   - [Item example](examples/item.json): Shows the basic usage of the extension in a STAC Item
   - [Collection example](examples/collection.json): Shows the basic usage of the extension in a STAC Collection
+  - [Sentinel-2 Item example](examples/item-sentinel-2.json): Shows the datatake identifier in a STAC Item
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
 
@@ -33,9 +34,10 @@ The fields in the table below can be used in these parts of STAC documents:
 - [ ] Links (incl. Link Templates)
 - [ ] Bands
 
-| Field Name       | Type            | Description |
-| ---------------- | --------------- | ----------- |
-| instrument_modes | \[string\|null] | A list of instrument modes of each instrument listed in `instruments`. |
+| Field Name             | Type            | Description |
+| ---------------------- | --------------- | ----------- |
+| instrument_modes       | \[string\|null] | A list of instrument modes of each instrument listed in `instruments`. |
+| instrument_datatake_id | string          | The identifier of the datatake (one continuous acquisition) that the data comes from. |
 
 ### `instrument_modes`
 
@@ -45,6 +47,52 @@ Don't provide `instrument_modes` if all array elements are `null`.
 
 It is intended that other extensions such as SAR and Altimetry define the scope
 of this more clearly when the other extensions is provided in combination with this extemsion.
+
+### `instrument_datatake_id`
+
+A datatake is one continuous acquisition by an instrument in one mode,
+for example a strip of satellite imagery or the flight line of an aircraft.
+If several instruments record together, e.g. OLI and TIRS on Landsat 8, they share one datatake.
+All Items that come from the same datatake have the same value.
+Thus clients can use this field to find all Items of one acquisition,
+for example adjacent tiles or the products of the same acquisition at different processing levels.
+
+The value is an opaque string.
+Use the identifier as given by the provider and don't change its format.
+If the provider gives a number, provide it as a string in the notation of the provider's metadata.
+
+The value is often only unique for a specific platform, e.g. if each satellite has its own counter.
+Thus `platform` should be provided and clients should use `platform` and `instrument_datatake_id` together to identify a datatake.
+
+Don't use this field for identifiers of parts of a datatake (e.g. scenes, tiles, slices or datastrips)
+or for the identifier of the product.
+For the part of a datatake that the ground segment processed as one unit,
+use `processing:datastrip_id` in the [Processing extension](https://github.com/stac-extensions/processing).
+If the data of an Item comes from more than one datatake, don't provide this field in the Item properties.
+Instead, provide it in the Assets if each Asset comes from a single datatake.
+Summarizing this field in Collections is usually not useful, as the values differ between Items.
+
+Providers use different terms for a datatake, for example:
+
+| Provider                | Term                | Example                                              |
+| ----------------------- | ------------------- | ---------------------------------------------------- |
+| Sentinel-1              | Mission datatake ID | `456741`                                             |
+| Sentinel-2              | Datatake identifier | `GS2A_20250626T101701_052286_N05.11`                 |
+| Landsat 8 and 9         | Interval ID         | `LC82220010042014265LGN00`                           |
+| TerraSAR-X and TanDEM-X | Unique datatake ID  | `1100526`                                            |
+| EnMAP                   | Datatake ID         | `0000218869`                                         |
+| DESIS                   | Datatake ID         | `0671952392`                                         |
+| SPOT 1 to 5             | Segment             | `S5_G1_A_DT_200709301703559_CS_001952`               |
+| Pléiades, SPOT 6 and 7  | Data strip ID       | `DS_PHR1A_201202191041343_FR1_PX_E005N43_1105_00548` |
+| PlanetScope             | Strip ID            | `4111711`                                            |
+| SkySat                  | Strip ID            | `s117_20230705T074050Z`                              |
+| WorldView               | Catalog ID          | `10400100603CF500`                                   |
+| AVIRIS-NG (airborne)    | Flight line         | `ang20200708t192518`                                 |
+
+Note that some providers (e.g. Airbus for Pléiades) use the term *data strip* for the whole acquisition.
+Such identifiers are datatake identifiers and should be provided in `instrument_datatake_id`.
+
+Extensions for specific missions may define the meaning and format of the value in more detail.
 
 ## Contributing
 
