@@ -79,7 +79,7 @@
     }
   ],
   "definitions": {
-    "instrument_modes": {
+    "instrument:modes": {
       "type": "array",
       "minItems": 1,
       "items": {
@@ -91,7 +91,7 @@
         "type": "string"
       }
     },
-    "instrument_datatake_id": {
+    "instrument:datatake_id": {
       "title": "Instrument Datatake ID",
       "type": "string",
       "minLength": 1
@@ -100,29 +100,37 @@
       "$comment": "Add your new fields here. Don't require them here as they would be required in all places where we reference the fields as possibly allowed.",
       "type": "object",
       "properties": {
-        "instrument_modes": {
-          "$ref": "#/definitions/instrument_modes"
+        "instrument:modes": {
+          "$ref": "#/definitions/instrument:modes"
         },
-        "instrument_datatake_id": {
-          "$ref": "#/definitions/instrument_datatake_id"
+        "instrument:datatake_id": {
+          "$ref": "#/definitions/instrument:datatake_id"
         }
-      }
+      },
+      "patternProperties": {
+        "^(?!instrument:)": {}
+      },
+      "additionalProperties": false
     },
     "summaries": {
       "$comment": "These are examples summaries that allows lists, ranges and JSON schemas, depending on how it makes sense for the individual data types of the fields. Validation only works for lists and ranges. JSON Schema (type: object) can always be provided for fields, but the corresponding schema for lists (type: array and items) and ranges (properties) should only be provided if it actually makes sense.",
       "type": "object",
       "properties": {
-        "instrument_modes": {
+        "instrument:modes": {
           "oneOf": [
             {
-              "$ref": "#/definitions/instrument_modes"
+              "$ref": "#/definitions/instrument:modes"
             },
             {
               "type": "object"
             }
           ]
         }
-      }
+      },
+      "patternProperties": {
+        "^(?!instrument:)": {}
+      },
+      "additionalProperties": false
     }
   }
 }

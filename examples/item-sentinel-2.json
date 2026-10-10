@@ -45,10 +45,10 @@
     "instruments": [
       "msi"
     ],
-    "instrument_modes": [
+    "instrument:modes": [
       "INS-NOBS"
     ],
-    "instrument_datatake_id": "GS2A_20250626T101701_052286_N05.11"
+    "instrument:datatake_id": "GS2A_20250626T101701_052286_N05.11"
   },
   "links": [
     {
