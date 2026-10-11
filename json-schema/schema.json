@@ -125,6 +125,12 @@
               "type": "object"
             }
           ]
+        },
+        "instrument:datatake_id": {
+          "type": ["array", "object"],
+          "items": {
+            "$ref": "#/definitions/instrument:datatake_id"
+          }
         }
       },
       "patternProperties": {
